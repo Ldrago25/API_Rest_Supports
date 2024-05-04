@@ -27,6 +27,10 @@ class SlaughterhouseController extends Controller
     {
         $slaughterHouseObjectSave= new Slaughterhouse($request->all());
         $slaughterHouseObjectSave->save();
+        return response()->json([
+            'resp'=>true,
+            'msg'=>'The object was saved correctly'
+        ]);
     }
 
     /**
@@ -55,6 +59,10 @@ class SlaughterhouseController extends Controller
         $slaughterhouse->prepaidAmount=$request->prepaidAmount;
         $slaughterhouse->location=$request->location;
         $slaughterhouse->save();
+        return response()->json([
+            'resp'=>true,
+            'msg'=>'The object was update correctly'
+        ]);
     }
 
     /**
@@ -66,5 +74,9 @@ class SlaughterhouseController extends Controller
     public function destroy($id)
     {
         Slaughterhouse::destroy($id);
+        return response()->json([
+            'resp'=>true,
+            'msg'=>'The object was delete correctly'
+        ]);
     }
 }

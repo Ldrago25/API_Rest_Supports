@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,3 +19,5 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 Route::apiResource('slaughterHouse',App\Http\Controllers\SlaughterhouseController::class);
+Route::apiResource('skin',App\Http\Controllers\SkinController::class);
+Route::post('auth',[AuthController::class, 'login']);

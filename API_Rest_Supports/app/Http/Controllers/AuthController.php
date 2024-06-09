@@ -36,12 +36,12 @@ class AuthController extends Controller
         }
 
         if($request->password != $result->password){
-            if(is_null($result)){
+
                 return response()->json([
                     'resp'=>false,
                     'msg'=>'Password is no equals'
                 ],400);
-            }
+
         }
 
         return $result;

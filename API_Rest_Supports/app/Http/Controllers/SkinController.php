@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Skin;
 use App\Models\Slaughterhouse;
+use App\Models\Stock;
 use Illuminate\Http\Request;
 
 class SkinController extends Controller
@@ -42,6 +43,17 @@ class SkinController extends Controller
         $slaughter->prepaidAmount = $newAmount;
         $slaughter->save();
 
+        $results=Stock::all();
+        error_log( $results);
+        if(count($results)==0){
+           $stockSave= new Stock();
+           $stockSave->collectionAmount = $skinObject->collectionAmount;
+           $stockSave->save();
+        }else{
+            $results[0]-> collectionAmount=  $results[0]-> collectionAmount + $skinObject->collectionAmount;
+            $results[0]->save();
+        }
+
         return response()->json(['resp' => true, 'msg' => 'Object save successfull'], 200);
     }
 
@@ -71,7 +83,7 @@ class SkinController extends Controller
         $skinUpdate = Skin::find($id);
 
 
-        $skinUpdate->collectionAmount += $skinObject->collectionAmount;
+        $skinUpdate->collectionAmount = $skinObject->collectionAmount;
         $skinUpdate->save();
 
         $slaughter=Slaughterhouse::find($skinUpdate->idSlaughterHouse);

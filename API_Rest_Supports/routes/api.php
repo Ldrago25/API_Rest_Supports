@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\StockController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +22,5 @@ use Illuminate\Support\Facades\Route;
 Route::apiResource('slaughterHouse',App\Http\Controllers\SlaughterhouseController::class);
 Route::apiResource('skin',App\Http\Controllers\SkinController::class);
 Route::post('auth',[AuthController::class, 'login']);
+Route::apiResource('sale',App\Http\Controllers\SaleController::class);
+Route::get('stock',[StockController::class, 'getStock']);
